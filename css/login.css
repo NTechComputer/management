@@ -1,7 +1,7 @@
 body{
     margin: 0;
     /* background-color: #e8e8e8; */
-    background-color: #0b3352;
+    background-color: #385972;
 }
 
 .container{
@@ -17,7 +17,7 @@ body{
     height: 500px;
     border: 1px solid black;
     border-radius: 10px;
-    background-color: rgb(225, 229, 248);
+    background-color: rgba(14, 195, 250, 0.342);
     box-shadow: 0 0 0 3px rgba(214, 214, 240, 0.5);
 }
 
@@ -34,7 +34,7 @@ body{
 
 .title{
     font: 650 25px monospace;
-    margin-top: -30px;
+    margin-top: 30px;
     /* border: 1px solid #000; */
     border-left: 5px solid royalblue;
     padding-left: 5px;
@@ -53,6 +53,7 @@ body{
 .form-input .form-label{
     font: 600 20px monospace;
     margin-bottom: 5px;
+    color: rgba(214, 214, 240, 0.849);
 }
 
 .form-input .input{
@@ -61,6 +62,8 @@ body{
     outline: none;
     padding: 3px;
     transition: all 0.5s;
+    background-color: rgb(211, 217, 223);
+    border-width: 1px;
 }
 
 /* .form-input .input:focus{
@@ -75,18 +78,21 @@ body{
     padding: 3px;
     margin-left: 20px;
     margin-top: 30px;
+    background-color: rgb(211, 217, 223);
+    border-width: 1px;
+    cursor: pointer;
 }
 
 .error{
     position: absolute;
-    color: red;
+    color: #890005;
     font-size: 80%;
     margin-left: 5px;
     font-family: monospace;
 }
 
 .spinner div{
-    background-color: #333;
+    background-color: rgb(58, 54, 54);
     height: 50px;
     width: 6px;
     display: inline-block;

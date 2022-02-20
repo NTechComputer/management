@@ -32,17 +32,30 @@ function login(){
             if(response != 401){
                 if(response == 404){
                     userError.innerText = "Error! Username not found";
+                    loading.style.display = "none";
+                    loginSection.style.display = "block";
                 }else if(response == 406){
                     passError.innerText = "Password is not correct!";
+                    loading.style.display = "none";
+                    loginSection.style.display = "block";
                 }else{
-                    loginSection.innerHTML = "";
-                    mailuser.value = username.value;
-                    mailbrance.value = response;
-                    maildevice.value = navigator.userAgent
-                    mail.submit()
+                    let url = "dashboard.html"
+                    fetch(url).then(res => res.text()).then(response => {
+                        document.getElementById("stylesheet").remove();
+                        let link = document.createElement("link");
+                        link.rel = "stylesheet";
+                        link.href = "css/dashboard.css";
+                        link.id = "stylesheet";
+                        document.head.appendChild(link);
+                        document.body.innerHTML = "";
+                        document.body.innerHTML = response;
+                    })
+                    .catch(err => {console.log(err)})
+                    // mailuser.value = username.value;
+                    // mailbrance.value = response;
+                    // maildevice.value = navigator.userAgent
+                    // mail.submit()
                 }
-                loading.style.display = "none";
-                loginSection.style.display = "block";
             }else{
                 alert("401")
             }
