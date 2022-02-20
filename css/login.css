@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body{
     margin: 0;
     /* background-color: #e8e8e8; */
@@ -133,4 +134,141 @@ body{
         -webkit-transform: scaleY(1);
         transform: scaleY(1);
     }
+=======
+body{
+    margin: 0;
+    /* background-color: #e8e8e8; */
+    background-color: #0b3352;
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login, .spinner{
+    width: 400px;
+    height: 500px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgb(225, 229, 248);
+    box-shadow: 0 0 0 3px rgba(214, 214, 240, 0.5);
+}
+
+.logo, .spinner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo img{
+    width: 250px;
+    margin-top: -30px;
+}
+
+.title{
+    font: 650 25px monospace;
+    margin-top: -30px;
+    /* border: 1px solid #000; */
+    border-left: 5px solid royalblue;
+    padding-left: 5px;
+    padding-bottom: 3px;
+    width: 200px;
+    margin-left: 20px;
+    background-color: #b3d0fd;
+    color: rgb(39, 22, 22);
+}
+
+.form-input{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.form-input .form-label{
+    font: 600 20px monospace;
+    margin-bottom: 5px;
+}
+
+.form-input .input{
+    width: calc(100% - 28px);
+    font: 600 18px monospace;
+    outline: none;
+    padding: 3px;
+    transition: all 0.5s;
+}
+
+/* .form-input .input:focus{
+     box-shadow: 0 0 0 1px cornflowerblue;
+    border-color: transparent; 
+} */
+
+.btn{
+    width: calc(100% - 38px);
+    font: 600 25px monospace;
+    outline: none;
+    padding: 3px;
+    margin-left: 20px;
+    margin-top: 30px;
+}
+
+.error{
+    position: absolute;
+    color: red;
+    font-size: 80%;
+    margin-left: 5px;
+    font-family: monospace;
+}
+
+.spinner div{
+    background-color: #333;
+    height: 50px;
+    width: 6px;
+    display: inline-block;
+    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    margin-left: 3px;
+}
+
+.spinner .rect2{
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+}
+
+.spinner .rect3{
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
+}
+
+.spinner .rect4{
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+
+.spinner .rect5{
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+
+@keyframes sk-stretchdelay {
+    0%, 100%, 40%{
+        -webkit-transform: scaleY(.4);
+    }
+    20%{
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+    }
+}
+
+@-webkit-keyframes sk-stretchdelay {
+    0%, 100%, 40%{
+        -webkit-transform: scaleY(.4);
+    }
+    20%{
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+    }
+>>>>>>> ba7233d8477ba178c925c91724182a35586bd399
 }
