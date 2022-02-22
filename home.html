@@ -1,0 +1,165 @@
+<style>
+    .container{
+        display: flex;
+        flex-direction: row;
+        margin: 20px;
+        width: calc(100% - 40px);
+    }
+
+    .container div{
+        width: 50%;
+    }
+
+    .instraction{
+        background-color: rgba(14, 195, 250, 0.342);
+        color: #bbcfeb;
+        font: 700 20px monospace;
+        overflow-y: auto;
+        height: calc(100vh - 150px);
+        border-right: 5px solid #bbcfeb;
+    }
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #bbcfeb; 
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #1565C0; 
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: deepskyblue; 
+    }
+    ol{
+        margin: 20px;
+    }
+
+    li{
+        padding: 10px;
+    }
+
+    .form{
+        padding: 0 10px;
+    }
+
+    .form textarea{
+        width: calc(100% - 12px);
+        resize: none;
+        height: 30vh;
+        background-color: #b0c5e2;
+        outline: none;
+        border: 1px solid #333;
+        padding: 10px;
+        font: 700 18px monospace;
+        border-radius: 5px;
+        transition: all 0.5s;
+    }
+    .form textarea:focus{
+        box-shadow: 0 0 0 2px rgba(214, 214, 240, 0.5);
+    }
+
+    .form-label{
+        font: 600 20px monospace;
+        margin-bottom: 10px;
+        color: rgba(214, 214, 240, 0.849);
+        margin-left: 5px;
+        width: max-content;
+    }
+
+    .form-label2{
+        font: 600 20px monospace;
+        margin-bottom: 10px;
+        color: deepskyblue;
+        margin-left: 5px;
+        width: max-content;
+        float: right; 
+        margin-top: -35px; 
+        text-align: right;
+    }
+
+
+    input[type="checkbox"]{
+        margin-top: 5px;
+    }
+
+    .cofirm-label{
+        font: 600 17px monospace;
+        color: #aaa;
+    }
+
+    .submit-button{
+        width: max-content;
+        font: 600 20px monospace;
+        outline: none;
+        padding: 3px 10px;
+        margin-top: 10px;
+        margin-right: -10px;
+        background-color: rgb(211, 217, 223);
+        border-width: 1px;
+        border-radius: 5px;
+        cursor: pointer;
+        float: right;
+    }
+
+    #loading2{
+        width: 50px;
+        float: right;
+        margin-top: 20px;
+        display: none;
+    }
+
+    .spinner2{
+        height: max-content;
+    }
+
+    .spinner2 div{
+        height: 30px;
+    }
+
+    .error{
+        width: 100%;
+        margin-top: 40px;
+        font: 600 17px monospace;
+        color: rgb(93, 11, 11);
+        margin-left: 5px;
+        display: none;
+    }
+</style>
+<div class="title">Instraction</div>
+
+<div class="container">
+    <div class="instraction">
+        <ol>
+            <li>Test 1</li>
+            <li>Test 2</li>
+            <li>Test 3</li>
+            <li>Test 4</li>
+            <li>Test 5</li>
+        </ol>
+    </div>
+    <div class="form">
+        <form onsubmit="attendence(); return false;">
+            <div class="form-label">Comment</div>
+            <div class="form-label2">Join at Morning</div>
+            <textarea id="comment"></textarea>
+            <label class="cofirm-label" for="confirm"><input required id="confirm" type="checkbox"> I read all instraction.</label>
+            <button class="submit-button">Sumit</button>
+            <div class="error">
+                Sorry, you can't submit your data. Plese try again!
+            </div>
+            <div id="loading2">
+                <div class="spinner spinner2">
+                    <div class="rect1"></div>
+                    <div class="rect2"></div>
+                    <div class="rect3"></div>
+                    <div class="rect4"></div>
+                    <div class="rect5"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

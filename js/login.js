@@ -1,9 +1,17 @@
+{
 let username = document.getElementById("username");
 let password = document.getElementById("password");
 let userError = document.getElementById("userError");
 let passError = document.getElementById("passError");
 let loading = document.getElementById("loading");
 let loginSection = document.getElementById("loginSection");
+
+if(localStorage.userInfo){
+    let data = JSON.parse(localStorage.userInfo);
+    username.value = data.username;
+    password.value = data.password;
+    login();
+}
 
 function login(){
     loading.style.display = "inline-block";
@@ -39,22 +47,35 @@ function login(){
                     loading.style.display = "none";
                     loginSection.style.display = "block";
                 }else{
-                    let url = "dashboard.html"
+                    let url = "dashboard.html";
+                    let data = JSON.parse(response);
+                    data.username = username.value;
+                    data.password = password.value;
+                    localStorage.userInfo = JSON.stringify(data);
                     fetch(url).then(res => res.text()).then(response => {
-                        document.getElementById("stylesheet").remove();
                         let link = document.createElement("link");
                         link.rel = "stylesheet";
                         link.href = "css/dashboard.css";
-                        link.id = "stylesheet";
+                        link.onload = function(){
+                            username = data.username;
+                            document.getElementById("stylesheet").remove();
+                            this.id = "stylesheet";
+
+                            document.body.innerHTML = "";
+                            document.body.innerHTML = response;
+                            let script = document.createElement("script");
+                            script.src = "js/home.js";
+                            script.onload = function(){
+                                document.getElementById("userName").innerText = username[0].toUpperCase() + username.substr(1);
+                                document.getElementById("userPhoto").src = "https://drive.google.com/uc?export=view&id=" +data.photo;
+                                document.getElementsByTagName("script")[0].remove();
+                            }
+                            document.body.appendChild(script);
+                            
+                        }
                         document.head.appendChild(link);
-                        document.body.innerHTML = "";
-                        document.body.innerHTML = response;
                     })
                     .catch(err => {console.log(err)})
-                    // mailuser.value = username.value;
-                    // mailbrance.value = response;
-                    // maildevice.value = navigator.userAgent
-                    // mail.submit()
                 }
             }else{
                 alert("401")
@@ -80,7 +101,7 @@ function passErrorHandle(){
         passError.innerText = ""
     }
 }
-
+}
 
 
 // canvas

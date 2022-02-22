@@ -1,45 +1,26 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/dashboard.css">
-</head>
-<body> -->
-    <div class="header">
-        <div class="profile">
-            <img src="user.svg" alt="user photo">
-            <div>Alamin</div>
-            <div>IT Services</div>
-            <div>Daily Debit-Credit</div>
-            <div>Cash Book</div>
-            <div>Log Out</div>
-        </div>
-        <img class="logo" src="logo.svg" alt="NTech Logo">
+<link rel="stylesheet" href="css/dashboard.css">
+<div class="header">
+    <div class="profile">
+        <img id="userPhoto" src="user.svg" alt="user photo">
+        <div onclick="openMenu(this, 'changePassword')" id="userName">Alamin</div>
+        <div onclick="openMenu(this, 'home')" class="activeMenu">Home</div>
+        <div onclick="openMenu(this, 'it-services')">IT Services</div>
+        <div onclick="openMenu(this, 'debit')">Daily Debit</div>
+        <div onclick="openMenu(this, 'credit')">Daily Credit</div>
+        <div onclick="openMenu(this, 'cashbook')">Cash Book</div>
+        <div onclick="logout(this)">Log Out</div>
     </div>
+    <img class="logo" src="logo.svg" alt="NTech Logo">
+</div>
 
-    <div class="title">Instraction</div>
-
-    <div class="container">
-        <div class="instraction">
-            <ol>
-                <li>Test 1 dlksjf dsfldsjfk dsfkjsd fkldsjf dsfjds fkldsjf klds jfj</li>
-                <li>Test 2</li>
-                <li>Test 3</li>
-                <li>Test 4</li>
-                <li>Test 5</li>
-                
-            </ol>
-        </div>
-        <div class="form">
-            <div class="form-label">Comment</div>
-            <div class="form-label2">Join at Morning</div>
-            <textarea name="comment" id=""></textarea>
-            <label class="cofirm-label" for="confirm"><input type="checkbox" name="" id="confirm"> I read all instraction.</label>
-            <button class="submit-button">Submit</button>
-        </div>
+<div id="loading">
+    <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
     </div>
-<!-- </body>
-</html> -->
+</div>
+
+<div id="content"></div>

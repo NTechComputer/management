@@ -85,14 +85,14 @@ body{
 
 .error{
     position: absolute;
-    color: #890005;
+    color: rgb(93, 11, 11);
     font-size: 80%;
     margin-left: 5px;
     font-family: monospace;
 }
 
 .spinner div{
-    background-color: rgb(58, 54, 54);
+    background-color: #bbcfeb;
     height: 50px;
     width: 6px;
     display: inline-block;
