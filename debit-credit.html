@@ -230,7 +230,7 @@
             </tr>
         </table>
         <form class="footer" onsubmit="debitSubmit(); return false;">
-            <input type="number" required oninput="discount(this.value)" class="form-input">
+            <input type="number" required oninput="this.value = this.value >= 0 ? this.value : 0; discount(this.value)" class="form-input">
             <button class="btn" type="submit">Submit</button>
             <div id="loading2">
                 <div class="spinner spinner2">

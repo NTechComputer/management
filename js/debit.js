@@ -35,7 +35,7 @@
     fetch(url).then(res => res.text()).then(response => {
         let data = JSON.parse(String(response).substr(47).slice(0, -2)).table.rows;
         // console.log(data)
-        fetch("debit.html").then(res => res.text()).then(response => {
+        fetch("debit-credit.html").then(res => res.text()).then(response => {
             document.getElementById("content").innerHTML = response;
             
             for(let row = 0; row < data.length; row++){
@@ -110,7 +110,6 @@
     }
 
     function discount(value){
-        value = value >= 0 ? value : 0;
         if(document.querySelector(".discountTr")){
             let tr =document.querySelector(".discountTr");
             tr.querySelector(".price").innerText = Number(value);
@@ -175,9 +174,10 @@
 
             let form = new FormData();
             form.append("action", "debit");
+            form.append("branch", JSON.parse(localStorage.userInfo).branch);
             form.append("data", JSON.stringify(data));
             if(document.querySelector(".form-input").value != 0){
-                form.append("discount", JSON.stringify([[new Date().toString(), "Discount", "", "", document.querySelector(".form-input").value, JSON.parse(localStorage.userInfo).username]]));
+                form.append("discount", JSON.stringify([[new Date().toString(), "Discount", "-", "-", document.querySelector(".form-input").value, document.querySelector(".form-input").value, JSON.parse(localStorage.userInfo).username]]));
             }
             
             let url = "https://script.google.com/macros/s/AKfycbzUY22DxVclwNwVbfwAvFarg3HyozbWAcChqOOW5T9c4L9ESLI/exec";
@@ -185,16 +185,23 @@
                 method: "POST",
                 mode: "cors",
                 header: {
-                    "Content-Type" : "application/json"
+                    "Content-Type" : "application/json",
+                    "Access-Control-Allow-Origin" : "*"
                 },
                 body: form
             }).then(res => res.text()).then(response => {
                 console.log(response)
                 response = JSON.parse(response);
                 if(response.result == "success"){
+                    let tableItem = document.querySelectorAll("table tr");
+                    for(let i = 1; i < tableItem.length - 1; i++){
+                        tableItem[i].remove();
+                    }
                     loading2.style.display = "none";
                     btn.style.display = "inline";
                     document.querySelector(".hidden").style.display = "none";
+                    document.querySelector(".form-input").value = "";
+                    document.querySelector(".items-footer .price").innerText = "000";
                 }
                 else{
                     document.querySelector(".hidden").style.display = "none";
