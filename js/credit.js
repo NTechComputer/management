@@ -31,13 +31,15 @@
 {
     // content showing
     let sheetId = "1VRTUEZawCxjwC0j4g33NCSZ72mT2AJMbzOKm-xeBJNg";
-    let url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=debit-list`;
+    let url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=credit-list`;
     fetch(url).then(res => res.text()).then(response => {
         let data = JSON.parse(String(response).substr(47).slice(0, -2)).table.rows;
         // console.log(data)
         fetch("debit-credit.html").then(res => res.text()).then(response => {
             document.getElementById("content").innerHTML = response;
-            document.querySelector(".title").innerText = "Daily Debit";
+            document.querySelector(".title").innerText = "Daily Credit";
+            document.querySelector(".form-input").style.opacity = "0";
+            document.querySelector(".form-input").disabled = true;
             
             for(let row = 0; row < data.length; row++){
                 let items = document.createElement("div");
@@ -111,46 +113,14 @@
     }
 
     function discount(value){
-        if(document.querySelector(".discountTr")){
-            let tr =document.querySelector(".discountTr");
-            tr.querySelector(".price").innerText = Number(value);
-            let preValue = Number(document.querySelector(".discountTr").getAttribute("preValue"));
-            document.querySelector(".discountTr").removeAttribute("preValue")
-            document.querySelector(".discountTr").setAttribute("preValue", value);
-            let absValue = preValue //Math.abs(preValue - Number(value));
-            document.querySelector(".items-footer .price").innerText = Number(document.querySelector(".items-footer .price").innerText) + absValue;
-            document.querySelector(".items-footer .price").innerText = Number(document.querySelector(".items-footer .price").innerText) - Number(value);
-        }
-        else{
-            let tr = document.createElement("tr");
-            let itemNameTd = document.createElement("td");
-            let amountTd = document.createElement("td");
-            let takeTd = document.createElement("td");
-            let span = document.createElement("span");
-
-            itemNameTd.setAttribute("class", "item-name");
-            itemNameTd.innerText = "Discount";
-            tr.appendChild(itemNameTd);
-
-            amountTd.setAttribute("class", "amount");
-            // amountTd.innerText = value;
-            tr.appendChild(amountTd);
-
-            takeTd.setAttribute("class", "price");
-            takeTd.innerText = value;
-            tr.appendChild(takeTd);
-            tr.setAttribute("class", "discountTr");
-            tr.setAttribute("preValue", value)
-            document.querySelector(".items-footer").parentNode.insertBefore(tr, document.querySelector(".items-footer"));
-            document.querySelector(".items-footer .price").innerText = Number(document.querySelector(".items-footer .price").innerText) - Number(value);
-        }
+        
     }
 
     function debitCreditSubmit(){
         let total = 0;
         let data = [];
         let table = document.querySelectorAll("table tr");
-        let length = table.length - 3;
+        let length = table.length - 2;
          if(length/*document.querySelector(".discountTr")*/){
             for(let tr = 1; tr <= length; tr++){
                 let item = [
@@ -174,12 +144,9 @@
             document.querySelector(".error").innerText = "";
 
             let form = new FormData();
-            form.append("action", "debit");
+            form.append("action", "credit");
             form.append("branch", JSON.parse(localStorage.userInfo).branch);
             form.append("data", JSON.stringify(data));
-            if(document.querySelector(".form-input").value != 0){
-                form.append("discount", JSON.stringify([[new Date().toString(), "Discount", "-", "-", document.querySelector(".form-input").value, document.querySelector(".form-input").value, JSON.parse(localStorage.userInfo).username]]));
-            }
             
             let url = "https://script.google.com/macros/s/AKfycbzUY22DxVclwNwVbfwAvFarg3HyozbWAcChqOOW5T9c4L9ESLI/exec";
             fetch(url, {

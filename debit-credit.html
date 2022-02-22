@@ -209,7 +209,7 @@
    }
 
 </style>
-<div class="title">Daily Debit</div>
+<div class="title">Daily</div>
 
 <div class="debit-cedit">
     <div class="left">
@@ -229,7 +229,7 @@
                 <th class="price">000</th>
             </tr>
         </table>
-        <form class="footer" onsubmit="debitSubmit(); return false;">
+        <form class="footer" onsubmit="debitCreditSubmit(); return false;">
             <input type="number" required oninput="this.value = this.value >= 0 ? this.value : 0; discount(this.value)" class="form-input">
             <button class="btn" type="submit">Submit</button>
             <div id="loading2">
