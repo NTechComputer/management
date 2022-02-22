@@ -31,7 +31,7 @@
 {
     // content showing
     let sheetId = "1VRTUEZawCxjwC0j4g33NCSZ72mT2AJMbzOKm-xeBJNg";
-    let url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=credit-list`;
+    let url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=${JSON.parse(localStorage.userInfo).branch}-credit-list`;
     fetch(url).then(res => res.text()).then(response => {
         let data = JSON.parse(String(response).substr(47).slice(0, -2)).table.rows;
         // console.log(data)
