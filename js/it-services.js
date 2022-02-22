@@ -34,7 +34,7 @@
     let url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=it-services-link`;
     fetch(url).then(res => res.text()).then(response => {
         let data = JSON.parse(String(response).substr(47).slice(0, -2)).table.rows;
-        console.log(data)
+        // console.log(data)
         fetch("it-services.html").then(res => res.text()).then(response => {
             document.getElementById("content").innerHTML = response;
             

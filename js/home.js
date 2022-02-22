@@ -107,6 +107,7 @@
             else{
                 button.style.display = "inline";
                 error.style.display = "block";
+                loading2.style.display = "none";
             }
         }).catch(err => {console.log(err)})
     }
