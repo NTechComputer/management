@@ -1,0 +1,110 @@
+body{
+    margin: 0;
+    background-color: #385972;
+}
+
+.header{
+    width: 100%;
+    border-bottom: 2px solid #000;
+    /* display: flex; 
+    flex-direction: row; */
+    /* padding: 10px;
+    padding-bottom: 0; */
+    /* padding-top: 10px; */
+    background-color: deepskyblue;
+}
+
+.header .logo{
+    height: 75px;
+    position: absolute;
+    right: 0;
+    top: -25px;
+}
+
+.profile{
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    margin:0;
+}
+
+.profile div{
+    font: 700 20px monospace;
+    padding: 10px 15px;
+    color: aliceblue;
+    margin: 0;
+    cursor: pointer;
+    border-right: 1px solid #1565C0;
+}
+
+.profile div:hover{
+    background-color:  #1565C0;
+}
+
+.profile img{
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    cursor: pointer;
+    /* padding-right: 5px; */
+}
+
+.title{
+    font: 650 25px monospace;
+    margin-top: 20px;
+    /* border: 1px solid #000; */
+    border-left: 5px solid royalblue;
+    padding-left: 10px;
+    padding-bottom: 3px;
+    width: 200px;
+    margin-left: 20px;
+    background-color: #b3d0fd;
+    color: rgb(39, 22, 22);
+}
+
+.container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    margin: 20px;
+    height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #bbcfeb; 
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1565C0; 
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: deepskyblue; 
+  }
+
+.container .items{
+    width: 400px;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: rgba(14, 195, 250, 0.342);
+    color: #bbcfeb;
+    cursor: pointer;
+    transition: all 0.5s;
+    font: 700 20px monospace;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.container .items:hover{
+    background-color: rgba(14, 195, 250, 0.726);
+    color: #d9e4f3;
+    transform: scale(1.04);
+}

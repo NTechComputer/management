@@ -74,6 +74,7 @@
         let loading2 = document.getElementById("loading2");
         let error = document.querySelector(".error");
 
+        error.style.display = "none";
         button.style.display = "none";
         loading2.style.display = "inline";
 

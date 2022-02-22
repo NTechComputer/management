@@ -85,7 +85,7 @@ body{
 
 .error{
     position: absolute;
-    color: rgb(93, 11, 11);
+    color: #890005;
     font-size: 80%;
     margin-left: 5px;
     font-family: monospace;
