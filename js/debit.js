@@ -110,6 +110,7 @@
     }
 
     function discount(value){
+        value = value >= 0 ? value : 0;
         if(document.querySelector(".discountTr")){
             let tr =document.querySelector(".discountTr");
             tr.querySelector(".price").innerText = Number(value);
@@ -163,18 +164,23 @@
                 ]
                 data.push(item);
             }
+            
             let loading2 = document.getElementById("loading2");
             let btn = document.querySelector(".btn");
 
             btn.style.display = "none";
             loading2.style.display = "inline";
             document.querySelector(".hidden").style.display = "inline";
+            document.querySelector(".error").innerText = "";
 
             let form = new FormData();
+            form.append("action", "debit");
             form.append("data", JSON.stringify(data));
-            form.append("discount", document.querySelector(".form-input").value);
-
-            let url = "";
+            if(document.querySelector(".form-input").value != 0){
+                form.append("discount", JSON.stringify([[new Date().toString(), "Discount", "", "", document.querySelector(".form-input").value, JSON.parse(localStorage.userInfo).username]]));
+            }
+            
+            let url = "https://script.google.com/macros/s/AKfycbzUY22DxVclwNwVbfwAvFarg3HyozbWAcChqOOW5T9c4L9ESLI/exec";
             fetch(url, {
                 method: "POST",
                 mode: "cors",
