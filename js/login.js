@@ -5,7 +5,7 @@
 
     let now = new Date().getTime();
     if(localStorage.lastUpadate){
-        if(now - Number(localStorage.lastUpadate) > 100000){
+        if(now - Number(localStorage.lastUpadate) > 10000){
             localStorage.lastUpadate = now;
             console.log("updated");
             window.location.reload();
