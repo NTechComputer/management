@@ -60,7 +60,7 @@ function login(){
                     loading.style.display = "none";
                     loginSection.style.display = "block";
                 }else{
-                    let url = "../contents/dashboard.html";
+                    let url = "./contents/dashboard.html";
                     let data = JSON.parse(response);
                     data.username = username.value;
                     data.password = password.value;

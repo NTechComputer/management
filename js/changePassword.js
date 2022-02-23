@@ -29,7 +29,7 @@
 }
 
 {
-    fetch("../contents/changePassword.html").then(res => res.text()).then(response => {
+    fetch("./contents/changePassword.html").then(res => res.text()).then(response => {
         document.getElementById("content").innerHTML = response;
         let loading = document.getElementById("loading");
         loading.style.display = "none";

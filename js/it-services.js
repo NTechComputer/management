@@ -35,7 +35,7 @@
     fetch(url).then(res => res.text()).then(response => {
         let data = JSON.parse(String(response).substr(47).slice(0, -2)).table.rows;
         // console.log(data)
-        fetch("../contents/it-services.html").then(res => res.text()).then(response => {
+        fetch("./contents/it-services.html").then(res => res.text()).then(response => {
             document.getElementById("content").innerHTML = response;
             
             for(let row = 0; row < data.length; row++){

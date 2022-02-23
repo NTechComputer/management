@@ -46,7 +46,7 @@
                     let creditData = JSON.parse(String(response).substr(47).slice(0, -2)).table.rows;
                         console.log(creditData)
                         // cashbook
-                        fetch("../contents/cashbook.html").then(res => res.text()).then(response => {
+                        fetch("./contents/cashbook.html").then(res => res.text()).then(response => {
                             document.getElementById("content").innerHTML = response;
                             
                             for(let row = 0; row < months.length; row++){
