@@ -24,7 +24,7 @@
         delete localStorage.userInfo;
         content.innerHTML = "";
         loading.style.display = "block";
-        setTimeout(function(){window.location = "../"}, 1200);
+        setTimeout(function(){window.location = "./"}, 1200);
     }
 }
 
@@ -37,7 +37,7 @@
         // console.log(data)
         fetch("./contents/it-services.html").then(res => res.text()).then(response => {
             document.getElementById("content").innerHTML = response;
-            
+            document.title = "IT Services";
             for(let row = 0; row < data.length; row++){
                 let items = document.createElement("div");
                 items.setAttribute("class", "items");

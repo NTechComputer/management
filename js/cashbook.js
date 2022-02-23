@@ -24,7 +24,7 @@
         delete localStorage.userInfo;
         content.innerHTML = "";
         loading.style.display = "block";
-        setTimeout(function(){window.location = "../"}, 1200);
+        setTimeout(function(){window.location = "./"}, 1200);
     }
 }
 
@@ -48,6 +48,7 @@
                         // cashbook
                         fetch("./contents/cashbook.html").then(res => res.text()).then(response => {
                             document.getElementById("content").innerHTML = response;
+                            document.title = "Cashbook";
                             
                             for(let row = 0; row < months.length; row++){
                                 let items = document.createElement("option");

@@ -5,11 +5,11 @@
   "icons": [
     {
       "src": "icon.png",
-      "sizes": "192x192",
+      "sizes": "640x640",
       "type": "image/png"
     }
   ],
-  "name": "NTech Management System",
+  "name": "NTech.Management",
   "short_name": "Management",
   "start_url": "/management/index.html"
 }

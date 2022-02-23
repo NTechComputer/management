@@ -24,13 +24,14 @@
         delete localStorage.userInfo;
         content.innerHTML = "";
         loading.style.display = "block";
-        setTimeout(function(){window.location = "../"}, 1200);
+        setTimeout(function(){window.location = "./"}, 1200);
     }
 }
 
 {
     fetch("./contents/changePassword.html").then(res => res.text()).then(response => {
         document.getElementById("content").innerHTML = response;
+        document.title = "Change Password";
         let loading = document.getElementById("loading");
         loading.style.display = "none";
     }).catch(err => console.log(err))

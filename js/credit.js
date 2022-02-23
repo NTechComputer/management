@@ -24,7 +24,7 @@
         delete localStorage.userInfo;
         content.innerHTML = "";
         loading.style.display = "block";
-        setTimeout(function(){window.location = "../"}, 1200);
+        setTimeout(function(){window.location = "./"}, 1200);
     }
 }
 
@@ -37,6 +37,7 @@
         // console.log(data)
         fetch("./contents/debit-credit.html").then(res => res.text()).then(response => {
             document.getElementById("content").innerHTML = response;
+            document.title = "Credit";
             document.querySelector(".title").innerText = "Daily Credit";
             document.querySelector(".form-input").style.opacity = "0";
             document.querySelector(".form-input").disabled = true;

@@ -76,6 +76,7 @@ function login(){
 
                             document.body.innerHTML = "";
                             document.body.innerHTML = response;
+                            document.title = "Home";
                             let script = document.createElement("script");
                             script.src = "js/home.js";
                             script.onload = function(){

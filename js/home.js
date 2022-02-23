@@ -24,7 +24,7 @@
         delete localStorage.userInfo;
         content.innerHTML = "";
         loading.style.display = "block";
-        setTimeout(function(){window.location = "../"}, 1200);
+        setTimeout(function(){window.location = "./"}, 1200);
     }
 }
 
@@ -37,6 +37,7 @@
         // console.log(data)
         fetch("./contents/home.html").then(res => res.text()).then(response => {
             document.getElementById("content").innerHTML = response;
+            document.title = "Home";
             let ol = document.getElementsByTagName("ol")[0];
             ol.innerHTML = "";
             for(let i = 0; i < data.length; i++){
