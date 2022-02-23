@@ -1,4 +1,8 @@
 {
+    if(screen.width < 750){
+        document.body.style.display = "none";
+    }
+
     let now = new Date().getTime();
     if(localStorage.lastUpadate){
         if(now - Number(localStorage.lastUpadate) > 100000){
