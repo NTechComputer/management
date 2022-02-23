@@ -87,6 +87,7 @@
                     }
                     else{
                         btn.style.display = "inline";
+                        loading2.style.display = "none";
                         error.style.display = "block";
                     }
                 }).catch(err => {console.log(err)})
