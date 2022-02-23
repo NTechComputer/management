@@ -1,26 +1,26 @@
 self.addEventListener('install', (e) => {
     e.waitUntil(
-      caches.open('10fastfingers-offline').then((cache) => cache.addAll([
+      caches.open('ntech-shop-management-systems').then((cache) => cache.addAll([
         '/management/',
-        // '/management/icon.png',
-        // '/management/logo.svg',
-        // '/management/user.svg',
+        '/management/icon.png',
+        '/management/logo.svg',
+        '/management/user.svg',
         '/management/index.html',
-        // '/management/contents/cashbook.html',
-        // '/management/contents/changePassword.html',
-        // '/management/contents/dashboard.html',
-        // '/management/contents/debit-credit.html',
-        // '/management/contents/home.html',
-        // '/management/contents/it-services.html',
-        // '/management/css/dashboard.css',
-        // '/management/css/login.css',
-        // '/management/js/cashbook.js',
-        // '/management/js/changePassword.js',
-        // '/management/js/credit.js',
-        // '/management/js/debit.js',
-        // '/management/js/home.js',
-        // '/management/js/it-services.js',
-        // '/management/js/login.js'
+        '/management/contents/cashbook.html',
+        '/management/contents/changePassword.html',
+        '/management/contents/dashboard.html',
+        '/management/contents/debit-credit.html',
+        '/management/contents/home.html',
+        '/management/contents/it-services.html',
+        '/management/css/dashboard.css',
+        '/management/css/login.css',
+        '/management/js/cashbook.js',
+        '/management/js/changePassword.js',
+        '/management/js/credit.js',
+        '/management/js/debit.js',
+        '/management/js/home.js',
+        '/management/js/it-services.js',
+        '/management/js/login.js'
       ])),
     );
   });
