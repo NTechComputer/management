@@ -1,5 +1,5 @@
 {
-    if(screen.width < 750){
+    if(!navigator.pdfViewerEnabled){
         document.body.style.display = "none";
     }
 
