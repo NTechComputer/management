@@ -35,7 +35,7 @@
     fetch(url).then(res => res.text()).then(response => {
         let data = JSON.parse(String(response).substr(47).slice(0, -2)).table.rows;
         // console.log(data)
-        fetch("debit-credit.html").then(res => res.text()).then(response => {
+        fetch("../contents/debit-credit.html").then(res => res.text()).then(response => {
             document.getElementById("content").innerHTML = response;
             document.querySelector(".title").innerText = "Daily Credit";
             document.querySelector(".form-input").style.opacity = "0";
@@ -83,7 +83,7 @@
             tr.appendChild(takeTd);
 
             span.setAttribute("class", "tooltiptext");
-            span.innerText = "Price : " + price;
+            span.innerText = "Cost : " + price;
             tr.appendChild(span);
 
             tr.setAttribute("id", "item-" + item.getAttribute("item"));

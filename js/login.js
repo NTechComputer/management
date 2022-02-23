@@ -1,4 +1,17 @@
 {
+    let now = new Date().getTime();
+    if(localStorage.lastUpadate){
+        if(now - Number(localStorage.lastUpadate) > 100000){
+            localStorage.lastUpadate = now;
+            console.log("updated");
+            window.location.reload();
+        }
+    }
+    else{
+        localStorage.lastUpadate = now;
+    }
+}
+{
 let username = document.getElementById("username");
 let password = document.getElementById("password");
 let userError = document.getElementById("userError");
@@ -47,7 +60,7 @@ function login(){
                     loading.style.display = "none";
                     loginSection.style.display = "block";
                 }else{
-                    let url = "dashboard.html";
+                    let url = "../contents/dashboard.html";
                     let data = JSON.parse(response);
                     data.username = username.value;
                     data.password = password.value;
@@ -104,97 +117,57 @@ function passErrorHandle(){
 }
 
 
-// canvas
-// var canvas = document.getElementsByTagName("canvas")[0];
-//   canvas.width = window.innerWidth;
-//   canvas.height = window.innerHeight;
-//   var cxt = canvas.getContext("2d");
+function invokeServiceWorkerUpdateFlow(registration) {
+    // TODO implement your own UI notification element
+    notification.show("New version of the app is available. Refresh now?");
+    notification.addEventListener('click', () => {
+        if (registration.waiting) {
+            // let waiting Service Worker know it should became active
+            registration.waiting.postMessage('SKIP_WAITING')
+        }
+    })
+}
 
+// check if the browser supports serviceWorker at all
+if ('serviceWorker' in navigator) {
+    // wait for the page to load
+    window.addEventListener('load', async () => {
+        // register the service worker from the file specified
+        const registration = await navigator.serviceWorker.register('/management/js/sw.js')
 
+        // ensure the case when the updatefound event was missed is also handled
+        // by re-invoking the prompt when there's a waiting Service Worker
+        if (registration.waiting) {
+            invokeServiceWorkerUpdateFlow(registration)
+        }
 
-// var chinese = "田由甲申甴电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐畑";
-// chinese = chinese.split("");
+        // detect Service Worker update available and wait for it to become installed
+        registration.addEventListener('updatefound', () => {
+            if (registration.installing) {
+                // wait until the new Service worker is actually installed (ready to take over)
+                registration.installing.addEventListener('statechange', () => {
+                    if (registration.waiting) {
+                        // if there's an existing controller (previous Service Worker), show the prompt
+                        if (navigator.serviceWorker.controller) {
+                            invokeServiceWorkerUpdateFlow(registration)
+                        } else {
+                            // otherwise it's the first install, nothing to do
+                            console.log('Service Worker initialized for the first time')
+                        }
+                    }
+                })
+            }
+        })
 
-// var font_size =10;
-// var columns = canvas.width/font_size; 
+        let refreshing = false;
 
-// var drops = [];
+        // detect controller change and refresh the page
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+            if (!refreshing) {
+                window.location.reload()
+                refreshing = true
+            }
+        })
+    })
+}
 
-// for(var x=0;x<columns;x++){
-//   drops[x]=1;
-// }
-
-// function draw(){
-//   cxt.fillStyle="rgba(0,0,0,0.05)";
-//   cxt.fillRect(0,0,canvas.width,canvas.height);
-  
-//   cxt.fillStyle = "#0F0";
-//   cxt.font = font_size+'px arial';
-  
-  
-//   for(var i=0;i<drops.length;i++){
-//     var text = chinese[Math.floor(Math.random()*chinese.length)];
-//     cxt.fillText(text,i*font_size,drops[i]*font_size);
-    
-//     if(drops[i]*font_size>c.height && Math.random() >0.975)
-//       drops[i]=0;
-    
-//     //increment y coordinate
-//     drops[i]++;
-// }
-  
-// }
-// setInterval(draw,33);
-//   if(canvas.getContext) {
-//     var ctx = canvas.getContext('2d');
-//     var w = canvas.width;
-//     var h = canvas.height;
-//     ctx.strokeStyle = 'rgba(174,194,224,0.5)';
-//     ctx.lineWidth = 1;
-//     ctx.lineCap = 'round';
-    
-    
-//     var init = [];
-//     var maxParts = 1000;
-//     for(var a = 0; a < maxParts; a++) {
-//       init.push({
-//         x: Math.random() * w,
-//         y: Math.random() * h,
-//         l: Math.random() * 1,
-//         xs: -4 + Math.random() * 4 + 2,
-//         ys: Math.random() * 10 + 10
-//       })
-//     }
-    
-//     var particles = [];
-//     for(var b = 0; b < maxParts; b++) {
-//       particles[b] = init[b];
-//     }
-    
-//     function draw() {
-//       ctx.clearRect(0, 0, w, h);
-//       for(var c = 0; c < particles.length; c++) {
-//         var p = particles[c];
-//         ctx.beginPath();
-//         ctx.moveTo(p.x, p.y);
-//         ctx.lineTo(p.x + p.l * p.xs, p.y + p.l * p.ys);
-//         ctx.stroke();
-//       }
-//       move();
-//     }
-    
-//     function move() {
-//       for(var b = 0; b < particles.length; b++) {
-//         var p = particles[b];
-//         p.x += p.xs;
-//         p.y += p.ys;
-//         if(p.x > w || p.y > h) {
-//           p.x = Math.random() * w;
-//           p.y = -20;
-//         }
-//       }
-//     }
-    
-//     setInterval(draw, 30);
-    
-//   }
