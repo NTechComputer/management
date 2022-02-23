@@ -6,7 +6,7 @@
         loading.style.display = "block";
         
         let script = document.createElement("script");
-        script.src = "js/" + source + ".js";
+        script.src = "js/" + source + ".js?t=" + new Date().getTime();
         script.onload = function(){
             let activeMenu = document.querySelector(".activeMenu");
             activeMenu.removeAttribute("class");
@@ -35,7 +35,7 @@
     fetch(url).then(res => res.text()).then(response => {
         let data = JSON.parse(String(response).substr(47).slice(0, -2)).table.rows;
         // console.log(data)
-        fetch("./contents/it-services.html").then(res => res.text()).then(response => {
+        fetch("./contents/it-services.html?t="  + new Date().getTime()).then(res => res.text()).then(response => {
             document.getElementById("content").innerHTML = response;
             document.title = "IT Services";
             for(let row = 0; row < data.length; row++){

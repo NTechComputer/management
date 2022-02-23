@@ -64,7 +64,7 @@ function login(){
                     loading.style.display = "none";
                     loginSection.style.display = "block";
                 }else{
-                    let url = "./contents/dashboard.html";
+                    let url = "./contents/dashboard.html?t=" + new Date().getTime();
                     let data = JSON.parse(response);
                     data.username = username.value;
                     data.password = password.value;
@@ -72,7 +72,7 @@ function login(){
                     fetch(url).then(res => res.text()).then(response => {
                         let link = document.createElement("link");
                         link.rel = "stylesheet";
-                        link.href = "css/dashboard.css";
+                        link.href = "css/dashboard.css?t=" + new Date().getTime();
                         link.onload = function(){
                             username = data.username;
                             document.getElementById("stylesheet").remove();
@@ -82,7 +82,7 @@ function login(){
                             document.body.innerHTML = response;
                             document.title = "Home";
                             let script = document.createElement("script");
-                            script.src = "js/home.js";
+                            script.src = "js/home.js?t=" + new Date().getTime();
                             script.onload = function(){
                                 document.getElementById("userName").innerText = username[0].toUpperCase() + username.substr(1);
                                 document.getElementById("userPhoto").src = "https://drive.google.com/uc?export=view&id=" +data.photo;

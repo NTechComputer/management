@@ -6,7 +6,7 @@
         loading.style.display = "block";
         
         let script = document.createElement("script");
-        script.src = "js/" + source + ".js";
+        script.src = "js/" + source + ".js?t="  + new Date().getTime();
         script.onload = function(){
             let activeMenu = document.querySelector(".activeMenu");
             activeMenu.removeAttribute("class");
@@ -29,7 +29,7 @@
 }
 
 {
-    fetch("./contents/changePassword.html").then(res => res.text()).then(response => {
+    fetch("./contents/changePassword.html?t="  + new Date().getTime()).then(res => res.text()).then(response => {
         document.getElementById("content").innerHTML = response;
         document.title = "Change Password";
         let loading = document.getElementById("loading");
@@ -83,7 +83,7 @@
                         let content = document.getElementById("content");
                         content.innerHTML = "";
                         loading.style.display = "block";
-                        setTimeout(function(){window.location = "../"}, 1200);
+                        setTimeout(function(){window.location = "./"}, 1200);
                     }
                     else{
                         btn.style.display = "inline";
