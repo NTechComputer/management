@@ -102,7 +102,7 @@
             response = JSON.parse(response);
             if(response.result == "success"){
                 loading2.style.display = "none";
-                localStorage['joinleave' + JSON.parse(localStorage.userInfo).username] = (localStorage['joinleave' + JSON.parse(localStorage.userInfo).username] + 1)%4;
+                localStorage['joinleave' + JSON.parse(localStorage.userInfo).username] = (++localStorage['joinleave' + JSON.parse(localStorage.userInfo).username])%4;
             }
             else{
                 button.style.display = "inline";

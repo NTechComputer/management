@@ -36,7 +36,6 @@
         let months = JSON.parse(String(response).substr(47).slice(0, -2)).table.rows;
         // montly debit
         sheetId = months[new Date().getMonth()].c[1].v;
-        console.log(sheetId)
         url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=monthly-debit`;
         fetch(url).then(res => res.text()).then(response => {
             let debitData = JSON.parse(String(response).substr(47).slice(0, -2)).table.rows;
@@ -56,6 +55,7 @@
                                 items.setAttribute("value", months[row].c[1].v)
                                 document.querySelector("#monthsList").appendChild(items)
                             }
+                            document.querySelector("#monthsList").value = sheetId;
 
                             let compare = 1;
                             let debitDataLength = debitData.length;
@@ -73,8 +73,9 @@
                                 document.querySelector("#daysList").appendChild(items)
                             }
 
-                            createDebitCredit(debitData, "debit");
-                            createDebitCredit(creditData, "credit");
+                            let totalDebit = createDebitCredit(debitData, "debit");
+                            let totalCredit = createDebitCredit(creditData, "credit")
+                            document.querySelector(".totalAmount").innerText = `Total : (${totalDebit} - ${totalCredit}) = ${Number(totalDebit) - Number(totalCredit)}`
 
                             let loading = document.getElementById("loading");
                             loading.style.display = "none";
@@ -128,6 +129,8 @@
         
         for(let row = 0; row < data.length; row++){
             let tr = document.createElement("tr");
+            tr.setAttribute("class", "tooltip");
+            let span = document.createElement("span");
             let td1 = document.createElement("td");
             let td2 = document.createElement("td");
             let td3 = document.createElement("td");
@@ -142,21 +145,25 @@
             td2.innerText = data[row].c[1].v;
 
             td3.setAttribute("class", "cashbookAmount");
-            td3.innerText = data[row].c[2].v;
-
             td4.setAttribute("class", "cashbookAmount");
             td5.setAttribute("class", "cashbookAmount");
             td6.setAttribute("class", "cashbookAmount");
 
+            td3.innerText = data[row].c[2]? data[row].c[2].v : "";
+            td4.innerText = data[row].c[3]? data[row].c[3].v : "";
+            td5.innerText = data[row].c[4].v;
+            td6.innerText = data[row].c[5].v;
+
+            span.setAttribute("class", "tooltiptext");
+            span.innerText = "Modified : " + getTime(data[row].c[0].v);
+            tr.appendChild(span);
+
             if(data[0].length == 7){
+                data[row].c[0].v = getTime(data[row].c[0].v);
+                span.innerText = "Price : " + data[row].c[3]? data[row].c[3].v : "";;
                 td4.innerText = data[row].c[4].v;
                 td5.innerText = data[row].c[5].v;
                 td6.innerText = data[row].c[6].v;
-            }
-            else{
-                td4.innerText = data[row].c[3].v;
-                td5.innerText = data[row].c[4].v;
-                td6.innerText = data[row].c[5].v;
             }
 
             total = td5.innerText;
@@ -198,6 +205,90 @@
         tr0.appendChild(th5);
         tr0.appendChild(th6);
         table.appendChild(tr0);
+
+        return total;
     }
 
+    function getTime(time){
+        // console.log(time)
+        time = new Date(time);
+        let hours = time.getHours();
+        let minutes = time.getMinutes();
+        let suffix = " AM";
+        if(hours > 12){
+            hours = hours - 12;
+            suffix = " PM";
+            if(hours == 24 && minutes == 0) suffix = " AM";
+        }
+        if(hours == 12 && minutes == 0) suffix = " PM";
+        return hours + ":" + minutes + suffix;
+    }
+
+    function monthChange(value){
+        document.getElementById("content").style.display = "none";
+        document.getElementById("loading").style.display = "inline";
+        // montly debit
+        let sheetId = document.querySelector("#monthsList").value;
+        let url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=monthly-debit`;
+        fetch(url).then(res => res.text()).then(response => {
+            let debitData = JSON.parse(String(response).substr(47).slice(0, -2)).table.rows;
+                // monthly credit
+                console.log(debitData)
+                url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=monthly-credit`;
+                fetch(url).then(res => res.text()).then(response => {
+                    let creditData = JSON.parse(String(response).substr(47).slice(0, -2)).table.rows;
+                        console.log(creditData)
+                        let compare = 1;
+                        let debitDataLength = debitData.length;
+                        let creditDataLength = creditData.length;
+                        compare = debitDataLength > creditDataLength ? debitDataLength : creditDataLength;
+                        document.querySelector("#daysList").innerHTML = "";
+                        let items = document.createElement("option");
+                        items.innerText = "Day";
+                        items.setAttribute("value", 0);
+                        document.querySelector("#daysList").appendChild(items)
+                        for(let row = 1; row <= compare; row++){
+                            let items = document.createElement("option");
+                            items.innerText = row;
+                            items.setAttribute("value", row);
+                            document.querySelector("#daysList").appendChild(items)
+                        }
+    
+                        let totalDebit = createDebitCredit(debitData, "debit");
+                        let totalCredit = createDebitCredit(creditData, "credit")
+                        document.querySelector(".totalAmount").innerText = `Total : (${totalDebit} - ${totalCredit}) = ${Number(totalDebit) - Number(totalCredit)}`;
+                        
+                        document.getElementById("content").style.display = "block";
+                        document.getElementById("loading").style.display = "none";
+                }).catch(err => console.log(err))
+        }).catch(err => console.log(err))
+    }
+
+    function dayChange(value){
+        document.getElementById("content").style.display = "none";
+        document.getElementById("loading").style.display = "inline";
+        // montly debit
+        let sheetId = document.querySelector("#monthsList").value;
+        let url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=debit-${value.value}`;
+        fetch(url).then(res => res.text()).then(response => {
+            let debitData = JSON.parse(String(response).substr(47).slice(0, -2)).table.rows;
+                // monthly credit
+                console.log(debitData)
+                url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=credit-${value.value}`;
+                fetch(url).then(res => res.text()).then(response => {
+                    let creditData = JSON.parse(String(response).substr(47).slice(0, -2)).table.rows;
+                        console.log(creditData)
+                        
+                        if(JSON.stringify(debitData) == JSON.stringify(creditData)) monthChange();
+                        else{
+                            let totalDebit = createDebitCredit(debitData, "debit");
+                            let totalCredit = createDebitCredit(creditData, "credit")
+                            document.querySelector(".totalAmount").innerText = `Total : (${totalDebit} - ${totalCredit}) = ${Number(totalDebit) - Number(totalCredit)}`;
+                            
+                            document.getElementById("content").style.display = "block";
+                            document.getElementById("loading").style.display = "none";
+                        }
+                }).catch(err => console.log(err))
+        }).catch(err => console.log(err))
+    }
 }
