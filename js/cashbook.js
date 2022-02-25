@@ -157,7 +157,7 @@
 
             span.setAttribute("class", "tooltiptext");
             span.innerText = "Modified : " + getTime(data[row].c[0].v);
-            tr.appendChild(span);
+            //tr.appendChild(span);
 
             if(data[0].c.length == 7){
                 td1.innerText = getTime(data[row].c[0].v);
@@ -175,6 +175,7 @@
             tr.appendChild(td4);
             tr.appendChild(td5);
             tr.appendChild(td6);
+            tr.appendChild(span);
             table.appendChild(tr);
         }
 
