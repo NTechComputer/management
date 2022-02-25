@@ -159,7 +159,7 @@
             span.innerText = "Modified : " + getTime(data[row].c[0].v);
             tr.appendChild(span);
 
-            if(data[0].length == 7){
+            if(data[0].c.length == 7){
                 data[row].c[0].v = getTime(data[row].c[0].v);
                 span.innerText = "Price : " + data[row].c[3]? data[row].c[3].v : "";;
                 td4.innerText = data[row].c[4].v;
