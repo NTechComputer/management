@@ -177,6 +177,7 @@
             tr.appendChild(td6);
             tr.appendChild(span);
             table.appendChild(tr);
+            console.log(span)
         }
 
         tr0 = document.createElement("tr");
