@@ -49,18 +49,60 @@
                 items.innerText = data[row].c[0].v;
                 document.querySelector(".left").appendChild(items)
             }
-
+            
+            if(localStorage.localDebitData){
+               let localDebitData = JSON.parse(localStorage.localDebitData)
+            	for(let item in localDebitData){
+            	  localItem(localDebitData[item].itemName, localDebitData[item].amount, localDebitData[item].price, localDebitData[item].item)
+            	}
+            }
+            
             let loading = document.getElementById("loading");
             loading.style.display = "none";
         }).catch(err => console.log(err))
     }).catch(err => console.log(err))
-
+	
+	function localItem(itemName, amount, price, item){
+		let tr = document.createElement("tr");
+		let itemNameTd = document.createElement("td");
+		let amountTd = document.createElement("td");
+		let takeTd = document.createElement("td");
+		let span = document.createElement("span");
+		
+		itemNameTd.setAttribute("class", "item-name");
+		itemNameTd.innerText = itemName;
+		tr.appendChild(itemNameTd);
+		
+		amountTd.setAttribute("class", "amount");
+		amountTd.innerText = amount;
+		tr.appendChild(amountTd);
+		
+		takeTd.setAttribute("class", "price");
+		takeTd.innerText = Number(amount) * Number(price);
+		tr.appendChild(takeTd);
+		
+		span.setAttribute("class", "tooltiptext");
+		span.innerText = "Price : " + price;
+		tr.appendChild(span);
+		
+		tr.setAttribute("id", "item-" + item);
+		tr.setAttribute("onclick", "removeItem(this)");
+		tr.setAttribute("class", "tooltip");
+		tr.setAttribute("price", price);
+		document.querySelector(".items-footer").parentNode.insertBefore(tr, document.querySelector(".items-footer"));
+		
+		document.querySelector(".items-footer .price").innerText = Number(document.querySelector(".items-footer .price").innerText) + Number(amount) * Number(price);
+	}
+	
+	
     function addItem(item, price){
+    	let amount = 1;
         document.querySelector(".error").innerText = "";
         if(document.getElementById("item-"+item.getAttribute("item"))){
             let tr = document.getElementById("item-"+item.getAttribute("item"));
             tr.querySelector(".amount").innerText = Number(tr.querySelector(".amount").innerText) + 1;
             tr.querySelector(".price").innerText = Number(tr.querySelector(".price").innerText) + price;
+            amount = tr.querySelector(".amount").innerText;
         }
         else{
             let tr = document.createElement("tr");
@@ -97,17 +139,37 @@
             document.querySelector(".form-input").value = "";
             document.querySelector(".discountTr").remove();
         }
+        
+        let localData = {
+	        itemName: item.innerText,
+	        amount: amount,
+	        price: price,
+	        item: item.getAttribute("item")
+        }
+        
+        let localDebitData;
+        if(localStorage.localDebitData){
+          localDebitData = JSON.parse(localStorage.localDebitData);
+        }
+        else localDebitData = {};
+        localDebitData["item-" + item.getAttribute("item")] = localData;
+        localStorage.localDebitData = JSON.stringify(localDebitData);
     }
 
     function removeItem(tr){
+    	let localDebitData = JSON.parse(localStorage.localDebitData);
+    	
         let price = Number(tr.getAttribute("price"));
         if(Number(tr.querySelector(".amount").innerText) != 1){
             tr.querySelector(".amount").innerText = Number(tr.querySelector(".amount").innerText) - 1;
             tr.querySelector(".price").innerText = Number(tr.querySelector(".price").innerText) - price;
+            localDebitData[tr.getAttribute("id")].amount = tr.querySelector(".amount").innerText;
         }
         else{
             tr.remove();
+            delete localDebitData[tr.getAttribute("id")];
         }
+        localStorage.localDebitData = JSON.stringify(localDebitData);
         document.querySelector(".items-footer .price").innerText = Number(document.querySelector(".items-footer .price").innerText) - price;      
     }
 
@@ -204,6 +266,7 @@
                     document.querySelector(".hidden").style.display = "none";
                     document.querySelector(".form-input").value = "";
                     document.querySelector(".items-footer .price").innerText = "000";
+                    delete localStorage.localDebitData;
                 }
                 else{
                     document.querySelector(".hidden").style.display = "none";
