@@ -2,6 +2,9 @@
     if(!navigator.pdfViewerEnabled){
         document.body.style.display = "none";
     }
+    if (localStorage.mobile){
+        document.body.style.display = '';
+    }
 
     let now = new Date().getTime();
     if(localStorage.lastUpadate){

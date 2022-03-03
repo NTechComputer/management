@@ -54,7 +54,7 @@
 
     function openLink(link){
         if(link != ""){
-            window.open(link, "", "popup");
+            window.open(link, "_blank");
         }
     }
 }
