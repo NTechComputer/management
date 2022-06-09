@@ -88,6 +88,11 @@
 
 
     function createDebitCredit(data, type){
+        const v = (value) => {
+          if(value || value == 0){
+            return value;
+          } else return "";
+        }
         let table = document.querySelector(`.${type} .items`);
         table.innerHTML = "";
 
@@ -140,31 +145,31 @@
             let td6 = document.createElement("td");
 
             td1.setAttribute("class", "cashbookDate");
-            td1.innerText = data[row].c[0].v.substr(4, 11).replace(/ /g, ", ").replace(",","");
+            td1.innerText = data[row].c[0]?.v?.substr(4, 11).replace(/ /g, ", ").replace(",","");
 
             td2.setAttribute("class", "cashbookSource");
-            td2.innerText = data[row].c[1].v;
+            td2.innerText = data[row].c[1]?.v;
 
             td3.setAttribute("class", "cashbookAmount");
             td4.setAttribute("class", "cashbookAmount");
             td5.setAttribute("class", "cashbookAmount");
             td6.setAttribute("class", "cashbookAmount");
 
-            td3.innerText = data[row].c[2]? data[row].c[2].v : "";
-            td4.innerText = data[row].c[3]? data[row].c[3].v : "";
-            td5.innerText = data[row].c[4].v;
-            td6.innerText = data[row].c[5].v;
+            td3.innerText = v(data[row].c[2]?.v);
+            td4.innerText = v(data[row].c[3]?.v);
+            td5.innerText = v(data[row].c[4]?.v);
+            td6.innerText = v(data[row].c[5]?.v);
 
             span.setAttribute("class", "tooltiptext");
-            span.innerText = "Modified : " + getTime(data[row].c[0].v);
+            span.innerText = "Modified : " + getTime(data[row].c[0]?.v);
             //tr.appendChild(span);
 
             if(data[0].c.length == 7){
                 td1.innerText = getTime(data[row].c[0].v);
-                span.innerText = "Price : " + (data[row].c[3])? data[row].c[3].v : "";
-                td4.innerText = data[row].c[4].v;
-                td5.innerText = data[row].c[5].v;
-                td6.innerText = data[row].c[6].v;
+                span.innerText = "Price : " + (data[row].c[3])? data[row].c[3]?.v : "";
+                td4.innerText = v(data[row].c[4]?.v);
+                td5.innerText = v(data[row].c[5]?.v);
+                td6.innerText = v(data[row].c[6]?.v);
             }
 
             total = td5.innerText;
