@@ -95,6 +95,9 @@
             document.querySelector(".container").innerHTML = "";
             document.getElementById("loading2").style.display = "block";
             let sheetId = "1Duklkl9C3B8o_cK8ew2a59YbWcbA78_Inw0MRki_Wsg";
+            value = Number(value).toString();
+            value = value[0] + "." + value.substr(1);
+            value = Number(value)
             let url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&range=A1:I500&tq=SELECT+B,D,F,G,H,I+WHERE+${type}+LIKE+"%25${value}%25"`;
             fetch(url).then(res => res.text()).then(response => {
                 //console.log(response)
