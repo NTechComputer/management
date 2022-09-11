@@ -1,102 +1,102 @@
 <style>
-    .debit-cedit{
-        display: flex;
-        flex-direction: row;
-        margin: 20px;
-        width: calc(100% - 40px);
-    }
+  .debit-cedit {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    width: calc(100% - 40px);
+  }
 
-    .debit-cedit .left{
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-around;
-        height: calc(100vh - 150px);
-        overflow-y: auto;
-        width: calc(70% - 5px);
-    }
+  .debit-cedit .left {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    height: calc(100vh - 150px);
+    overflow-y: auto;
+    width: calc(70% - 5px);
+  }
 
-    .debit-cedit .left .items{
-        width: 300px;
-        padding: 10px;
-        margin-top: 20px;
-        background-color: rgba(14, 195, 250, 0.342);
-        color: #bbcfeb;
-        cursor: pointer;
-        transition: all 0.5s;
-        font: 700 20px monospace;
-        min-height: 150px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
+  .debit-cedit .left .items {
+    width: 300px;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: rgba(14, 195, 250, 0.342);
+    color: #bbcfeb;
+    cursor: pointer;
+    transition: all 0.5s;
+    font: 700 20px monospace;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
 
-    .debit-cedit .left .items:hover{
-        background-color: rgba(14, 195, 250, 0.726);
-        color: #d9e4f3;
-        transform: scale(1.04);
-    }
+  .debit-cedit .left .items:hover {
+    background-color: rgba(14, 195, 250, 0.726);
+    color: #d9e4f3;
+    transform: scale(1.04);
+  }
 
-    .debit-cedit .right{
-        display: flex;
-        flex-direction: column;
-        height: calc(100vh - 150px);
-        overflow-y: auto;
-        width: calc(30% - 5px);
-        margin-left: 10px;
-        /* border: 2px solid #eee; */
-        border-right: none;
-    }
+  .debit-cedit .right {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 150px);
+    overflow-y: auto;
+    width: calc(30% - 5px);
+    margin-left: 10px;
+    /* border: 2px solid #eee; */
+    border-right: none;
+  }
 
-    .debit-cedit .right .items{
-        /* display: flex;
+  .debit-cedit .right .items {
+    /* display: flex;
         flex-direction: row; */
-        font: 700 15px monospace;
-        text-align: center;
-        background-color: rgba(14, 195, 250, 0.363);
-        color: #bbcfeb;
-        transition: all 0.5s;
-        border-collapse: collapse;
-        cursor: pointer;
-        /* align-items: center;
+    font: 700 15px monospace;
+    text-align: center;
+    background-color: rgba(14, 195, 250, 0.363);
+    color: #bbcfeb;
+    transition: all 0.5s;
+    border-collapse: collapse;
+    cursor: pointer;
+    /* align-items: center;
         justify-content: center; */
-    }
+  }
 
-    .debit-cedit .right .items tr:nth-child(even){
-        background-color: #385972;
-        /* color: rgb(39, 22, 22); */
-    }
+  .debit-cedit .right .items tr:nth-child(even) {
+    background-color: #385972;
+    /* color: rgb(39, 22, 22); */
+  }
 
-    /* .debit-cedit .right .items tr:hover{
+  /* .debit-cedit .right .items tr:hover{
         background-color: rgba(14, 195, 250, 0.726);
         color: #d9e4f3;
         transform: scale(1.01); 
     } */
 
-    /* .debit-cedit .right .items div{
+  /* .debit-cedit .right .items div{
         width: 15%;
         border: 0.5px solid #000; 
         height: 40px;
     } */
 
-    .debit-cedit .right .items td, th{
-        border: 1px solid #eee;
-        height: 20px;
-        overflow-x: auto;
-    }
+  .debit-cedit .right .items td,
+  th {
+    border: 1px solid #eee;
+    height: 20px;
+    overflow-x: auto;
+  }
 
-    .debit-cedit .right .items tr{
-        display: flex;
-        flex-direction: row;
-    }
+  .debit-cedit .right .items tr {
+    display: flex;
+    flex-direction: row;
+  }
 
-
-    .tooltip {
+  .tooltip {
     position: relative;
     display: inline-block;
-    }
+  }
 
-    .tooltip .tooltiptext {
+  .tooltip .tooltiptext {
     visibility: hidden;
     width: 120px;
     background-color: black;
@@ -110,9 +110,9 @@
     left: 50%;
     margin-left: -60px;
     margin-top: -15px;
-    }
+  }
 
-    .tooltip .tooltiptext::after {
+  .tooltip .tooltiptext::after {
     content: "";
     position: absolute;
     bottom: 100%;
@@ -121,55 +121,57 @@
     border-width: 5px;
     border-style: solid;
     border-color: transparent transparent black transparent;
-    }
+  }
 
-    .tooltip:hover .tooltiptext {
+  .tooltip:hover .tooltiptext {
     visibility: visible;
-    }
+  }
 
+  .debit-cedit .right .items .item-name {
+    width: 70%;
+  }
 
-    .debit-cedit .right .items .item-name{
-        width: 70%;
-    }
+  .debit-cedit .right .items .amount,
+  .price {
+    width: 62.391px;
+    padding-left: 3px;
+    padding-right: 3px;
+  }
 
-    .debit-cedit .right .items .amount,.price{
-        width: 62.391px;
-        padding-left: 3px;
-        padding-right: 3px;
-    }
+  .debit-cedit .right .items .items-header {
+    background-color: #b3d0fd;
+    color: rgb(39, 22, 22);
+    position: sticky;
+    top: -1px;
+    z-index: 5;
+  }
 
-    .debit-cedit .right .items .items-header{
-        background-color: #b3d0fd;
-        color: rgb(39, 22, 22);
-        position: sticky;
-        top: -1px;
-        z-index: 5;
-    }
+  .debit-cedit .right .items .items-footer {
+    background-color: #b3d0fd !important;
+    color: rgb(39, 22, 22);
+    position: sticky;
+    bottom: -1px;
+  }
 
-    .debit-cedit .right .items .items-footer{
-        background-color: #b3d0fd!important;
-        color: rgb(39, 22, 22);
-        position: sticky;
-        bottom: -1px;
-    }
+  .debit-cedit .right .footer {
+    display: flex;
+    flex-direction: row;
+    /* margin: 10px; */
+  }
 
-    .debit-cedit .right .footer{
-        display: flex;
-        flex-direction: row;
-        /* margin: 10px; */
-    }
+  .hidden {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    background-color: #38597262;
+    z-index: 10;
+    display: none;
+  }
 
-   .hidden{
-        width: 100%;
-        height: 100vh;
-        position: fixed;
-        top: 0;
-        background-color: #38597262;
-        z-index: 10;
-        display: none;
-    }
-
-    .form-input, .btn{
+  .form-input,
+  .form-input0,
+  .btn {
     width: 50%;
     font: 600 15px monospace;
     outline: none;
@@ -178,72 +180,98 @@
     background-color: rgb(211, 217, 223);
     border-width: 1px;
     margin: 10px;
-   } 
+  }
 
-   .btn{
-       text-align: center;
-       cursor: pointer;
-       background-color: rgb(211, 217, 223);
-   }
+  .btn {
+    text-align: center;
+    cursor: pointer;
+    background-color: rgb(211, 217, 223);
+  }
 
-   .error{
-       width: max-content;
-       margin: 0 auto;
-       padding: 10px;
-       font: 700 15px monospace;
-       color: rgb(93, 11, 11);
-   }
+  .error {
+    width: max-content;
+    margin: 0 auto;
+    padding: 10px;
+    font: 700 15px monospace;
+    color: rgb(93, 11, 11);
+  }
 
-   #loading2{
-       width: 50%;
-       margin: 0 auto;
-       display: none;
-   }
+  #loading2 {
+    width: 50%;
+    margin: 0 auto;
+    display: none;
+  }
 
-   .spinner2{
-       height: 50px;
-   }
-   .spinner2 div{
-       width: 3px;
-       height: 30px;
-   }
-
+  .spinner2 {
+    height: 50px;
+  }
+  .spinner2 div {
+    width: 3px;
+    height: 30px;
+  }
 </style>
 <div class="title">Daily</div>
 
 <div class="debit-cedit">
-    <div class="left">
-        
-    </div>
-    <div class="right">
-        <table class="items">
-            <tr class="items-header">
-                <th class="item-name">Item Name</th>
-                <th class="amount">Amount</th>
-                <th class="price">৳</th>
-            </tr>
-            
-            <tr class="items-footer">
-                <th class="item-name"> </th>
-                <th class="amount">Total</th>
-                <th class="price">000</th>
-            </tr>
-        </table>
-        <form class="footer" onsubmit="debitCreditSubmit(); return false;">
-            <input type="number" required oninput="this.value = this.value >= 0 ? this.value : 0; discount(this.value)" class="form-input">
-            <button class="btn" type="submit">Submit</button>
-            <div id="loading2">
-                <div class="spinner spinner2">
-                    <div class="rect1"></div>
-                    <div class="rect2"></div>
-                    <div class="rect3"></div>
-                    <div class="rect4"></div>
-                    <div class="rect5"></div>
-                </div>
-            </div>
-        </form>
-        <div class="error"></div>
-    </div>
+  <div class="left"></div>
+  <div class="right">
+    <table class="items">
+      <tr class="items-header">
+        <th class="item-name">Item Name</th>
+        <th class="amount">Amount</th>
+        <th class="price">৳</th>
+      </tr>
+
+      <tr class="items-footer">
+        <th class="item-name"></th>
+        <th class="amount">Total</th>
+        <th class="price">000</th>
+      </tr>
+    </table>
+    <form
+      style="flex-direction: column"
+      class="footer"
+      onsubmit="debitCreditSubmit(); return false;"
+    >
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          margin: 10px 10px 0;
+        "
+        class="form-inputDiv"
+      >
+        <div style="font: 700 18px monospace; color: #bbcfeb">Others:</div>
+        <input
+          type="number"
+          required
+          oninput="this.value = this.value >= 0 ? this.value : 0; others(this.value)"
+          class="form-input0"
+          style="width: 100%; margin-right: 0"
+        />
+      </div>
+      <div style="display: flex; flex-direction: row">
+        <input
+          type="number"
+          required
+          oninput="this.value = this.value >= 0 ? this.value : 0; discount(this.value)"
+          class="form-input"
+        />
+        <button class="btn" type="submit">Submit</button>
+        <div id="loading2">
+          <div class="spinner spinner2">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="error"></div>
+  </div>
 </div>
 
 <div class="hidden"></div>
