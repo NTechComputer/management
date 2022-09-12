@@ -336,7 +336,10 @@
         data.push(item);
       }
 
-      if (localStorage.localDebitOthers) {
+      if (
+        localStorage.localDebitOthers &&
+        Number(document.querySelector(".form-input0").value) != 0
+      ) {
         let item = [
           new Date().toString(),
           "Others",
