@@ -2,14 +2,14 @@
 <div class="header">
     <div class="profile">
         <img id="userPhoto" src="user.svg" alt="user photo">
-        <div onclick="openMenu(this, 'changePassword')" id="userName">Alamin</div>
-        <div onclick="openMenu(this, 'home')" class="activeMenu">Home</div>
-        <div onclick="openMenu(this, 'it-services')">IT Services</div>
-        <div onclick="openMenu(this, 'debit')">Daily Debit</div>
-        <div onclick="openMenu(this, 'credit')">Daily Credit</div>
-        <div onclick="openMenu(this, 'cashbook')">Cash Book</div>
-        <div onclick="openMenu(this, 'database')">Database</div>
-        <div onclick="logout(this)">Log Out</div>
+        <div onclick="openMenu(this, 'changePassword'); localStorage.source = 'changePassword';" source="changePassword" id="userName">Alamin</div>
+        <div onclick="openMenu(this, 'home'); localStorage.source = 'home';" class="activeMenu" source="home">Home</div>
+        <div onclick="openMenu(this, 'it-services'); localStorage.source = 'it-services';" source="it-services">IT Services</div>
+        <div onclick="openMenu(this, 'debit'); localStorage.source = 'debit';" source="debit">Daily Debit</div>
+        <div onclick="openMenu(this, 'credit'); localStorage.source = 'credit';" source="credit">Daily Credit</div>
+        <div onclick="openMenu(this, 'cashbook'); localStorage.source = 'cashbook';" source="cashbook">Cash Book</div>
+        <div onclick="openMenu(this, 'database'); localStorage.source = 'database';" source="database">Database</div>
+        <div onclick="logout(this); delete localStorage.source">Log Out</div>
     </div>
     <img class="logo" src="logo.svg" alt="NTech Logo">
 </div>
