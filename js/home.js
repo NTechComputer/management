@@ -34,9 +34,17 @@
     let url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=instractions`;
     fetch(url).then(res => res.text()).then(response => {
         if(localStorage.source && localStorage.source != "home"){
-            let source = localStorage.source;
-            openMenu(document.querySelector(`[source = '${source}']`), source);
-            return;
+            let date = new Date().toLocaleDateString();
+            if(localStorage.localDate){
+                if(localStorage.localDate == data){
+                    let source = localStorage.source;
+                    openMenu(document.querySelector(`[source = '${source}']`), source);
+                    return;
+                }
+                localStorage.localDate = date;
+            } else{
+                localStorage.localDate = date;
+            }
         }
         let data = JSON.parse(String(response).substr(47).slice(0, -2)).table.rows;
         // console.log(data)
