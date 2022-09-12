@@ -90,10 +90,6 @@ function login(){
                                 document.getElementById("userName").innerText = username[0].toUpperCase() + username.substr(1);
                                 document.getElementById("userPhoto").src = "https://drive.google.com/uc?export=view&id=" +data.photo;
                                 document.getElementsByTagName("script")[0].remove();
-                                if(localStorage.source){
-                                    let source = localStorage.source;
-                                    openMenu(document.querySelector(`[source = '${source}']`), source)
-                                }
                             }
                             document.body.appendChild(script);
                             
