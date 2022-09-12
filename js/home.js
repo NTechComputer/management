@@ -36,7 +36,7 @@
         if(localStorage.source && localStorage.source != "home"){
             let date = new Date().toLocaleDateString();
             if(localStorage.localDate){
-                if(localStorage.localDate == data){
+                if(localStorage.localDate == date){
                     let source = localStorage.source;
                     openMenu(document.querySelector(`[source = '${source}']`), source);
                     return;
