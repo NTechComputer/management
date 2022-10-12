@@ -155,9 +155,12 @@
             td5.setAttribute("class", "cashbookAmount");
             td6.setAttribute("class", "cashbookAmount");
 
+            if(data[0].c.length == 7) total += Number(v(data[row].c[4]?.v));
+            else total += Number(v(data[row].c[3]?.v));
+
             td3.innerText = v(data[row].c[2]?.v);
             td4.innerText = v(data[row].c[3]?.v);
-            td5.innerText = v(data[row].c[4]?.v);
+            td5.innerText = total;
             td6.innerText = v(data[row].c[5]?.v);
 
             span.setAttribute("class", "tooltiptext");
@@ -168,11 +171,11 @@
                 td1.innerText = getTime(data[row].c[0].v);
                 span.innerText = "Price : " + (data[row].c[3])? data[row].c[3]?.v : "";
                 td4.innerText = v(data[row].c[4]?.v);
-                td5.innerText = v(data[row].c[5]?.v);
+                td5.innerText = total;
                 td6.innerText = v(data[row].c[6]?.v);
             }
 
-            total = td5.innerText;
+            // total = td5.innerText;
 
             tr.appendChild(td1);
             tr.appendChild(td2);
