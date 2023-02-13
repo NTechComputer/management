@@ -1,6 +1,7 @@
 {
   "background_color": "#385972",
-  "description": "NTech Shop Management System!",
+  "description": "NTech Management System!",
+  "version": "0.1.0",
   "display": "standalone",
   "icons": [
     {
@@ -11,5 +12,5 @@
   ],
   "name": "NTech. Management",
   "short_name": "Management",
-  "start_url": "/management/index.html"
+  "start_url": "/index.html"
 }
